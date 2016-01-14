@@ -21,5 +21,12 @@
   },
   "engines": {
     "node": "0.10.x"
+  },
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "eslint-config-google": "^0.3.0"
+  },
+  "eslintConfig": {
+    "extends": "google"
   }
 }
