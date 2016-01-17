@@ -1,0 +1,26 @@
+FROM node:latest
+
+MAINTAINER upamune
+
+RUN npm i -g hubot
+
+RUN mkdir /bot && cd /bot
+
+ADD . /bot
+
+RUN npm install
+
+ENV PORT 9999
+ENV HUBOT_NAME ""
+ENV HUBOT_GITHUB_USER ""
+ENV HUBOT_TWITTER_USER ""
+ENV HUBOT_TWITTER_KEY ""
+ENV HUBOT_TWITTER_SECRET ""
+ENV HUBOT_TWITTER_TOKEN ""
+ENV HUBOT_TWITTER_TOKEN_SECRET ""
+
+EXPOSE 9999
+
+WORKDIR /bot
+
+CMD bin/hubot --adapter twitter --name ${HUBOT_NAME}
