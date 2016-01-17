@@ -7,7 +7,7 @@ module.export = (robot) => {
   let user = process.env.HUBOT_GITHUB_USER;
   let url = `https://github.com/users/${user}/contributions`;
 
-  new cron('* 18 * * *', () => {
+  new cron('0 0 18 * * *', () => {
     let data = [];
     https.get(url, (res) => {
       res

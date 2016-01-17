@@ -10,7 +10,7 @@ module.export = function (robot) {
   var user = process.env.HUBOT_GITHUB_USER;
   var url = 'https://github.com/users/' + user + '/contributions';
 
-  new _cron.CronJob('* 18 * * *', function () {
+  new _cron.CronJob('0 0 18 * * *', function () {
     var data = [];
     _https.https.get(url, function (res) {
       res.on('data', function (chunk) {
