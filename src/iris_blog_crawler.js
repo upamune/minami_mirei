@@ -6,7 +6,7 @@ import { CronJob as cron } from 'cron';
 module.exports = (robot) => {
   let url = 'http://ameblo.jp/iris-official-blog';
   let to = process.env.HUBOT_TWITTER_USER;
-  let client = redis.createClient();
+  let client = redis.createClient('6379', 'redis');
 
   new cron('0 * * * * *', () => {
     request

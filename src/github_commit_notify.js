@@ -1,7 +1,7 @@
 import { CronJob as cron } from 'cron';
 import { https } from 'https';
 
-module.export = (robot) => {
+module.exports = (robot) => {
   let msg = '今日はまだコミットしてないぷり!';
   let to = process.env.HUBOT_TWITTER_USER;
   let user = process.env.HUBOT_GITHUB_USER;

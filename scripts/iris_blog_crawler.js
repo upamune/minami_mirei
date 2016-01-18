@@ -19,7 +19,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 module.exports = function (robot) {
   var url = 'http://ameblo.jp/iris-official-blog';
   var to = process.env.HUBOT_TWITTER_USER;
-  var client = _redis2.default.createClient();
+  var client = _redis2.default.createClient('6379', 'redis');
 
   new _cron.CronJob('0 * * * * *', function () {
     _request2.default.get(url, function (err, res, body) {

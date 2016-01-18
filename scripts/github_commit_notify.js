@@ -4,7 +4,7 @@ var _cron = require('cron');
 
 var _https = require('https');
 
-module.export = function (robot) {
+module.exports = function (robot) {
   var msg = '今日はまだコミットしてないぷり!';
   var to = process.env.HUBOT_TWITTER_USER;
   var user = process.env.HUBOT_GITHUB_USER;
