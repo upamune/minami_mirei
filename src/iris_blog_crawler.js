@@ -8,7 +8,7 @@ module.exports = (robot) => {
   let to = process.env.HUBOT_TWITTER_USER;
   let client = redis.createClient('6379', 'redis');
 
-  new cron('0 0 * * * *', () => {
+  new cron('0 * * * * *', () => {
     request
     .get(url, (err, res, body) => {
       if(!err && res.statusCode === 200) {
