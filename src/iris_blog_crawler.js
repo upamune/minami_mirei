@@ -6,7 +6,6 @@ import { CronJob as cron } from 'cron';
 module.exports = (robot) => {
   let url = 'http://ameblo.jp/iris-official-blog';
   let to = process.env.HUBOT_TWITTER_USER;
-  let client = redis.createClient('6379', 'redis');
   let nickname = {
     "山北早紀" : "さきさま",
     "芹澤優" : "ゆうちゃん",
@@ -17,6 +16,7 @@ module.exports = (robot) => {
   };
 
   new cron('0 * * * * *', () => {
+    let client = redis.createClient('6379', 'redis');
     request
     .get(url, (err, res, body) => {
       if(!err && res.statusCode === 200) {
@@ -29,7 +29,7 @@ module.exports = (robot) => {
         author = nickname[author] || author;
 
         client.get(url, (err, reply) => {
-          if(reply === null || title === reply.toString()) {
+          if(!err || reply === null || title !== reply.toString()) {
             let msg = `${author} がブログを更新したぷり!! ${title} - ${link}`;
             robot.reply(to, msg);
             client.set(url, title);

@@ -19,7 +19,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 module.exports = function (robot) {
   var url = 'http://ameblo.jp/iris-official-blog';
   var to = process.env.HUBOT_TWITTER_USER;
-  var client = _redis2.default.createClient('6379', 'redis');
   var nickname = {
     "山北早紀": "さきさま",
     "芹澤優": "ゆうちゃん",
@@ -30,6 +29,7 @@ module.exports = function (robot) {
   };
 
   new _cron.CronJob('0 * * * * *', function () {
+    var client = _redis2.default.createClient('6379', 'redis');
     _request2.default.get(url, function (err, res, body) {
       if (!err && res.statusCode === 200) {
         (function () {
@@ -42,7 +42,7 @@ module.exports = function (robot) {
           author = nickname[author] || author;
 
           client.get(url, function (err, reply) {
-            if (reply === null || title === reply.toString()) {
+            if (!err || reply === null || title !== reply.toString()) {
               var msg = author + ' がブログを更新したぷり!! ' + title + ' - ' + link;
               robot.reply(to, msg);
               client.set(url, title);
