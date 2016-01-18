@@ -21,7 +21,7 @@ module.exports = function (robot) {
   var to = process.env.HUBOT_TWITTER_USER;
   var client = _redis2.default.createClient('6379', 'redis');
 
-  new _cron.CronJob('0 * * * * *', function () {
+  new _cron.CronJob('0 0 * * * *', function () {
     _request2.default.get(url, function (err, res, body) {
       if (!err && res.statusCode === 200) {
         (function () {
