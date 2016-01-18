@@ -29,5 +29,5 @@ module.exports = (robot) => {
         }
       });
     });
-  });
+  }, null, true);
 };

@@ -43,5 +43,5 @@ module.exports = function (robot) {
         })();
       }
     });
-  });
+  }, null, true);
 };
