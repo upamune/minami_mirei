@@ -20,6 +20,14 @@ module.exports = function (robot) {
   var url = 'http://ameblo.jp/iris-official-blog';
   var to = process.env.HUBOT_TWITTER_USER;
   var client = _redis2.default.createClient('6379', 'redis');
+  var nickname = {
+    "山北早紀": "さきさま",
+    "芹澤優": "ゆうちゃん",
+    "茜屋日海夏": "ひみたす",
+    "若井友希": "ゆうきちゃん",
+    "久保田未夢": "みゆたん",
+    "澁谷梓希": "ずっちゃん"
+  };
 
   new _cron.CronJob('0 * * * * *', function () {
     _request2.default.get(url, function (err, res, body) {
@@ -31,10 +39,11 @@ module.exports = function (robot) {
           var title = $title.text();
           var link = $title.attr('href');
           var author = $('article .skin-entryHead .skin-entryThemes a').text();
+          author = nickname[author] || author;
 
           client.get(url, function (err, reply) {
             if (reply === null || title === reply.toString()) {
-              var msg = author + ' ちゃんがブログを更新したぷり!! ' + title + ' - ' + link;
+              var msg = author + ' がブログを更新したぷり!! ' + title + ' - ' + link;
               robot.reply(to, msg);
               client.set(url, title);
             }
