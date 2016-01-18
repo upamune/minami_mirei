@@ -42,7 +42,7 @@ module.exports = function (robot) {
           author = nickname[author] || author;
 
           client.get(url, function (err, reply) {
-            if (!err || reply === null || title !== reply.toString()) {
+            if (reply === null || title !== reply.toString()) {
               var msg = author + ' がブログを更新したぷり!! ' + title + ' - ' + link;
               robot.reply(to, msg);
               client.set(url, title);

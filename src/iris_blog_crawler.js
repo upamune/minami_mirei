@@ -29,7 +29,7 @@ module.exports = (robot) => {
         author = nickname[author] || author;
 
         client.get(url, (err, reply) => {
-          if(!err || reply === null || title !== reply.toString()) {
+          if(reply === null || title !== reply.toString()) {
             let msg = `${author} がブログを更新したぷり!! ${title} - ${link}`;
             robot.reply(to, msg);
             client.set(url, title);
