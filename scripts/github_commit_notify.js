@@ -4,6 +4,10 @@ var _cron = require('cron');
 
 var _https = require('https');
 
+var _https2 = _interopRequireDefault(_https);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 module.exports = function (robot) {
   var msg = '今日はまだコミットしてないぷり!';
   var to = process.env.HUBOT_TWITTER_USER;
@@ -12,7 +16,7 @@ module.exports = function (robot) {
 
   new _cron.CronJob('0 0 18 * * *', function () {
     var data = [];
-    _https.https.get(url, function (res) {
+    _https2.default.get(url, function (res) {
       res.on('data', function (chunk) {
         data.push(chunk);
       }).on('end', function () {

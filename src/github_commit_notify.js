@@ -1,5 +1,5 @@
 import { CronJob as cron } from 'cron';
-import { https } from 'https';
+import https from 'https';
 
 module.exports = (robot) => {
   let msg = '今日はまだコミットしてないぷり!';
