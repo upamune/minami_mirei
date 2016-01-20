@@ -21,7 +21,7 @@ module.exports = function (robot) {
   var to = process.env.HUBOT_TWITTER_USER;
   var nickname = {
     "山北早紀": "さきさま",
-    "芹澤優": "ゆうちゃん",
+    "芹澤 優": "ゆうちゃん",
     "茜屋日海夏": "ひみたす",
     "若井友希": "ゆうきちゃん",
     "久保田未夢": "みゆたん",
